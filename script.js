@@ -1,28 +1,35 @@
 const projects = [
     {
         name: "Decision Support System – Best Goat Selection",
-        method: "SMART",
+        method: "SMART (Simple Multi Attribute Rating Technique)",
         tech: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
         desc: "AI-driven decision support system for ranking livestock based on weighted criteria.",
         img: "img/goat.png"
     },
     {
         name: "Decision Support System – Best Cadre Selection",
-        method: "SAW",
+        method: "SAW (Simple Additive Weighting)",
         tech: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
         desc: "Data-driven application to evaluate and select optimal candidates.",
         img: "img/cadre.png"
     },
     {
         name: "Decision Support System – Class Leader Selection",
-        method: "MAUT",
+        method: "MAUT (Multi-Attribute Utility Theory)",
         tech: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
         desc: "Utility-based decision support system for leadership selection.",
         img: "img/class_leader.png"
     },
     {
+        name: "Decision Support System – Printer Selection",
+        method: "SAW (Simple Additive Weighting)",
+        tech: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
+        desc: "Utility-based decision support system for selecting optimal printers.",
+        img: "img/printer.png"
+    },
+    {
         name: "Hospital Virtual Assistant Chatbot",
-        method: "RAG",
+        method: "RAG (Retrieval-Augmented Generation)",
         tech: ["Python", "Streamlit", "LangChain"],
         desc: "AI-powered chatbot for hospital information and assistance.",
         img: "img/chatbot.png"
