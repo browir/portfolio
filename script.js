@@ -19,6 +19,13 @@ const projects = [
         tech: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
         desc: "Utility-based decision support system for leadership selection.",
         img: "img/class_leader.png"
+    },
+    {
+        name: "Hospital Virtual Assistant Chatbot",
+        method: "RAG",
+        tech: ["Python", "Streamlit", "LangChain"],
+        desc: "AI-powered chatbot for hospital information and assistance.",
+        img: "img/chatbot.png"
     }
 ];
 
