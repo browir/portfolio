@@ -71,20 +71,19 @@ revealElements.forEach(el => revealObserver.observe(el));
 const sections = document.querySelectorAll("section, header");
 const navLinks = document.querySelectorAll(".nav-link");
 
-window.addEventListener("scroll", () => {
-    let current = "";
+const observerOptions = {
+    threshold: 0.5 
+};
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (scrollY >= sectionTop) {
-            current = section.getAttribute("id");
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const id = entry.target.getAttribute("id");
+        const link = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove("active"));
+            if(link) link.classList.add("active");
         }
     });
+}, observerOptions);
 
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
-    });
-});
+sections.forEach(section => observer.observe(section));
