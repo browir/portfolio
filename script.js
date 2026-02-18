@@ -94,3 +94,81 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 sections.forEach(section => observer.observe(section));
+
+// ===== ANIMATED SKILLS =====
+class SkillsAnimator {
+    constructor() {
+        this.skillItems = document.querySelectorAll('.skill-item');
+        this.currentIndex = 0;
+        this.interval = null;
+        this.isAnimating = false;
+    }
+
+    start() {
+        if (this.skillItems.length === 0) return;
+
+        // Stop any existing animation first
+        this.stop();
+
+        // Reset state
+        this.currentIndex = 0;
+        this.isAnimating = false;
+
+        // Clear any existing highlights
+        this.skillItems.forEach(skill => {
+            skill.classList.remove('highlight');
+        });
+
+        // Show all skills initially
+        this.skillItems.forEach(skill => skill.classList.add('active'));
+
+        // Start highlighting from first skill
+        this.skillItems[0].classList.add('highlight');
+
+        // Set up interval for moving highlight
+        this.interval = setInterval(() => {
+            this.nextSkill();
+        }, 1500); // Move highlight every 1.5 seconds
+    }
+
+    nextSkill() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        // Remove current highlight
+        this.skillItems[this.currentIndex].classList.remove('highlight');
+
+        // Move to next skill
+        this.currentIndex = (this.currentIndex + 1) % this.skillItems.length;
+
+        // Add highlight to next skill
+        this.skillItems[this.currentIndex].classList.add('highlight');
+
+        this.isAnimating = false;
+    }
+
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
+}
+
+// Initialize skills animation when skills section comes into view
+const skillsSection = document.getElementById('skills');
+const skillsAnimator = new SkillsAnimator();
+
+const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            skillsAnimator.start();
+        } else {
+            skillsAnimator.stop();
+        }
+    });
+}, { threshold: 0.3 });
+
+if (skillsSection) {
+    skillsObserver.observe(skillsSection);
+}
